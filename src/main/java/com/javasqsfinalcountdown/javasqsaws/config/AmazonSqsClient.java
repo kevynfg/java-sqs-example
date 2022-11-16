@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -21,6 +22,8 @@ import com.amazonaws.services.sqs.model.CreateQueueRequest;
 import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
 import com.amazonaws.services.sqs.model.SetQueueAttributesRequest;
+
+import io.awspring.cloud.messaging.core.QueueMessagingTemplate;
 
 @Service
 public class AmazonSqsClient {
@@ -42,6 +45,7 @@ public class AmazonSqsClient {
                 .withCredentials(getAwsCredentialProvider())
                 .withRegion(Region.getRegion(Regions.US_EAST_1).getName())
                 .build();
+
     }
 
     private AWSCredentialsProvider getAwsCredentialProvider() {
